@@ -1,5 +1,6 @@
 package com.example;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.CharBuffer;
 import java.util.Scanner;
@@ -23,7 +24,9 @@ public class PhoneBook{
         try{
             FileReader fr = new FileReader("C:\\Users\\alexey\\Desktop\\phonebook\\src\\main\\resources\\FizBook.csv");
             Scanner scan = new Scanner(fr);
+            scan.nextLine();
             while(scan.hasNextLine()){
+               
                 //System.out.println(scan.nextLine());
                 strSplit = scan.nextLine().split(";");
                 FizList.add(new Fiz(strSplit[1],strSplit[2],strSplit[3],strSplit[4]));
@@ -39,9 +42,10 @@ public class PhoneBook{
 
 
         String[] strSplit2;
-        try{
+     /*   try{
             FileReader fr = new FileReader("C:\\Users\\alexey\\Desktop\\phonebook\\src\\main\\resources\\UrBook.csv");
             Scanner scan = new Scanner(fr);
+          //  scan.nextLine();
             while(scan.hasNextLine()){
                 //System.out.println(scan.nextLine());
                 strSplit2 = scan.nextLine().split(";");
@@ -50,11 +54,30 @@ public class PhoneBook{
             fr.close();
         }catch (IOException error){
             System.out.println(error.getMessage());
-        }
+        }*/
        
-        for(int e=0; e < UrList.size(); e++){
+       /* for(int e=0; e < UrList.size(); e++){
             System.out.println("ID: "+ UrList.get(e).getID() + " Name: " + UrList.get(e).getName() + " PhoneNumber: "+ UrList.get(e).getNumber() + " Adress: " + UrList.get(e).getAdress() + " INN: " + UrList.get(e).getINN());
+        }*/
+
+
+        UrList.add(new Ur("ALEXEYTOP1","8553535","Saint-P, Dvorec nomber 1","1152256"));
+
+
+        String strAllUnity = new String();
+        try{
+            FileWriter fw = new FileWriter("C:\\Users\\alexey\\Desktop\\phonebook\\src\\main\\resources\\UrBook.csv",true);
+            
+            for(int e=0; e < UrList.size(); e++)
+            strAllUnity=UrList.get(e).getID()+";"+UrList.get(e).getName() +";"+UrList.get(e).getNumber()+";"+UrList.get(e).getAdress()+";"+UrList.get(e).getINN()+"\n";
+           //System.out.println(strAllUnity);
+            fw.write(strAllUnity);
+            fw.flush();
+            fw.close();
+        }catch (IOException error){
+            System.out.println(error.getMessage());
         }
+
 
 
     }
