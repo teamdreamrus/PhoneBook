@@ -7,10 +7,10 @@ abstract class User{
     private int ID;
 
     public User(String name, String number,String adress){
-        Name = name;
-        NumberPhone = number;
-        Adress = adress;
-        ID = 0;
+        this.Name = name;
+        this.NumberPhone = number;
+        this.Adress = adress;
+        this.ID = 0;
         setNextID();
     }
 
