@@ -26,10 +26,9 @@ public class PhoneBook{
             Scanner scan = new Scanner(fr);
             scan.nextLine();
             while(scan.hasNextLine()){
-              Fiz a = new Fiz();
-               a.formCSV(scan.nextLine());
-                FizList.add(a);
-
+              Fiz f = new Fiz();
+               f.formCSV(scan.nextLine());
+                FizList.add(f);
             }
             fr.close();
         }catch (IOException error){
@@ -45,8 +44,9 @@ public class PhoneBook{
             Scanner scan = new Scanner(fr);
             scan.nextLine();
             while(scan.hasNextLine()){
-                strSplit2 = scan.nextLine().split(";");
-                UrList.add(new Ur(strSplit2[1],strSplit2[2],strSplit2[3],strSplit2[4]));
+                Ur u = new Ur();
+               u.formCSV(scan.nextLine());
+                UrList.add(u);
             }
             fr.close();
         }catch (IOException error){
@@ -59,13 +59,13 @@ public class PhoneBook{
         //UrList.add(new Ur("Vasyaaaaa","4954954","MOYA XATA","4458642"));
 
 
-        String strAllUnityUr = new String();
+        //String strAllUnityUr = new String();
         try{
             FileWriter fw = new FileWriter("C:\\Users\\alexey\\Desktop\\phonebook\\src\\main\\resources\\UrBook.csv",true);
             
-            for(int e=0; e < UrList.size(); e++)
-            strAllUnityUr=UrList.get(e).getID()+";"+UrList.get(e).getName() +";"+UrList.get(e).getNumber()+";"+UrList.get(e).getAdress()+";"+UrList.get(e).getINN()+"\n";
-            fw.write(strAllUnityUr);
+            int e = UrList.size()-1;
+            //strAllUnityUr=UrList.get(e).getID()+";"+UrList.get(e).getName() +";"+UrList.get(e).getNumber()+";"+UrList.get(e).getAdress()+";"+UrList.get(e).getINN()+"\n";
+            fw.write(UrList.get(e).toCSV());
             fw.flush();
             fw.close();
         }catch (IOException error){
