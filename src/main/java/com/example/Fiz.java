@@ -8,4 +8,13 @@ public class Fiz extends User{
         this.MobilePhone = mobilePhone;
     }
     public String getMobilePhone() { return MobilePhone; }
+
+    String toCSV(){
+        return (super.toCSV()+MobilePhone+"\n");
+    }
+    void formCSV(String str){
+        
+        super.formCSV(str);
+        this.MobilePhone=str.substring(str.lastIndexOf(";"));
+    }
 }

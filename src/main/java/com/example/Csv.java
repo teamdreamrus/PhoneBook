@@ -1,4 +1,5 @@
 package main.java.com.example;
-interface CVS{
-    
+interface Csv{
+    String toCSV();
+    void formCSV(String str);
 }
