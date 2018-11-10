@@ -26,8 +26,10 @@ public class PhoneBook{
             Scanner scan = new Scanner(fr);
             scan.nextLine();
             while(scan.hasNextLine()){
-                strSplit = scan.nextLine().split(";");
-                FizList.add(new Fiz(strSplit[1],strSplit[2],strSplit[3],strSplit[4]));
+              Fiz a = new Fiz();
+               a.formCSV(scan.nextLine());
+                FizList.add(a);
+
             }
             fr.close();
         }catch (IOException error){
@@ -70,15 +72,15 @@ public class PhoneBook{
             System.out.println(error.getMessage());
         }
 
-        //FizList.add(new Fiz("POTAPENKO","888888","RUBLYOVKA","4758654"));
+       // FizList.add(new Fiz("POTAPENKO","888888","RUBLYOVKA","4758654"));
 
-        String strAllUnityFiz = new String();
+       // String strAllUnityFiz = new String();
         try{
             FileWriter fw = new FileWriter("C:\\Users\\alexey\\Desktop\\phonebook\\src\\main\\resources\\FizBook.csv",true);
             
-            for(int e=0; e < FizList.size(); e++)
-            strAllUnityFiz=FizList.get(e).getID()+";"+FizList.get(e).getName() +";"+FizList.get(e).getNumber()+";"+FizList.get(e).getAdress()+";"+FizList.get(e).getMobilePhone()+"\n";
-            fw.write(strAllUnityFiz);
+            int e = FizList.size()-1;
+           // strAllUnityFiz=FizList.get(e).getID()+";"+FizList.get(e).getName() +";"+FizList.get(e).getNumber()+";"+FizList.get(e).getAdress()+";"+FizList.get(e).getMobilePhone()+"\n";
+            fw.write(FizList.get(e).toCSV());
             fw.flush();
             fw.close();
         }catch (IOException error){
