@@ -1,9 +1,10 @@
 package com.example;
 
-class Calls{
+class Calls extends CallsConf{
     private String FioFirst;
     private String FioSec;
     private int time;
+    
     Calls(String First, String Second, int t){
         this.FioFirst = First;
         this.FioSec = Second;

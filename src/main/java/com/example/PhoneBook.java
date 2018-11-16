@@ -20,6 +20,14 @@ public class PhoneBook{
         for(int e=0; e < UrList.size(); e++){
             System.out.println("ID: "+ UrList.get(e).getID() + " Name: " + UrList.get(e).getName() + " PhoneNumber: "+ UrList.get(e).getNumber() + " Adress: " + UrList.get(e).getAdress() + "INN: " + UrList.get(e).getINN());
         }*/
+        Statistic<Calls> call = new Statistic <Calls> ();
+        call.array.add(new Calls("I","WHO",10));
+        call.array.add(new Calls("you","me",50));
+        System.out.println(call.getMax().getFirst());
+        System.out.println(call.alltime());
+
+
+
         String[] strSplit;
         try{
             FileReader fr = new FileReader("C:\\Users\\alexey\\Desktop\\phonebook\\src\\main\\resources\\FizBook.csv");
@@ -98,6 +106,15 @@ public class PhoneBook{
             System.out.println("ID: "+ UrList.get(e).getID() + " Name: " + UrList.get(e).getName() + " PhoneNumber: "+ UrList.get(e).getNumber() + " Adress: " + UrList.get(e).getAdress() + " INN: " + UrList.get(e).getINN());
         }
 
+       /* Calls call1 = new Calls("aaa","bbb",52);
+        Calls call2 = new Calls("bbbb","ccccc",26);
+       // Array a=call1.getTime(),call2.getTime();
+       ArrayList<Integer> arrayTime = new ArrayList<Integer>();
+       arrayTime.add(call1.getTime());
+       arrayTime.add(call2.getTime());
+
+        Statistic <Calls> stCalls = new Statistic<arrayTime> ();
+        System.out.println(stCalls.getMax());*/
 
 
     }

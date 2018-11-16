@@ -1,9 +1,10 @@
 package com.example;
 
-class Conf{
+class Conf extends CallsConf{
     private String[] FioArray;
     private int time;
-    Calls(String[] FioAll, int t){
+
+    Conf(String[] FioAll, int t){
         this.FioArray = FioAll;
         this.time = t;
     }
@@ -12,5 +13,8 @@ class Conf{
     }
     public int getTime(){
         return this.time;
+    }
+    public String getFirst(){
+        return null;
     }
 }
