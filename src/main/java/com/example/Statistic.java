@@ -4,12 +4,7 @@ import java.util.*;
 class Statistic <T extends CallsConf>{
     
     ArrayList <T> array = new ArrayList <T>();
-   
-    
-   /* T getObject(){
-        return this.object;
-}*/
-//вызов в phoneBook Statistic <Calls> stCalls = new Statistic<> (V);
+
    
      public int alltime(){
         int all = 0;
@@ -24,7 +19,7 @@ class Statistic <T extends CallsConf>{
 
         for (T var: this.array)
 		{
-			if (name == var.getFirst())
+			if (name.equals(var.getFirst()))
 			{
 				return var.getTime();
 			}

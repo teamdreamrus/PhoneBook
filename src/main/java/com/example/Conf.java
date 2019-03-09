@@ -15,6 +15,6 @@ class Conf extends CallsConf{
         return this.time;
     }
     public String getFirst(){
-        return null;
+        return FioArray[0];
     }
 }

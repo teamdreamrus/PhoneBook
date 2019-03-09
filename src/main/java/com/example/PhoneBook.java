@@ -5,21 +5,41 @@ import java.io.IOException;
 import java.nio.CharBuffer;
 import java.util.Scanner;
 import java.util.*;
+import java.sql.*;
+import org.apache.log4j.Logger;
+import com.google.gson.Gson;
+
 public class PhoneBook{
+    final static Logger Log = Logger.getLogger(PhoneBook.class);
     public static void main(String[] args){
         ArrayList<Fiz> FizList = new ArrayList<Fiz>();
         ArrayList<Ur> UrList = new ArrayList<Ur>();
-        // LinkedList<User> list = new LinkedList<>();
-        /*FizList.add(new Fiz("Nikolay Buhaschii","88005553535","NSK, Glavnii Vokzal, 3 lavochka","+7923232323"));
-        FizList.add(new Fiz("Vasya Svoi","8553535","Saint-P, Dvorec nomber 1","+784523562"));
-        UrList.add(new Ur("Nikolay2 Buhaschii","88005553535","NSK, Glavnii Vokzal, 3 lavochka","11214553"));
-        UrList.add(new Ur("Vasya Svoi2","8553535","Saint-P, Dvorec nomber 1","1152256"));
-        for(int e=0; e < FizList.size(); e++){
-            System.out.println("ID: "+ FizList.get(e).getID() + " Name: " + FizList.get(e).getName() + " PhoneNumber: "+ FizList.get(e).getNumber() + " Adress: " + FizList.get(e).getAdress() + "Mobile Phone: " + FizList.get(e).getMobilePhone());
+        String URL = "jdbc:mysql://localhost:3306/test"+"?serverTimezone=UTC";
+        try{
+            Connection con=DriverManager.getConnection(URL,"root","A.lexey99");
+            Statement st = con.createStatement();
+           String query = "DELETE FROM Ur WHERE NAME = 'Batya'";
+            st.execute(query);
+            query = "SELECT * FROM Ur";
+            ResultSet rs= st.executeQuery(query);
+            while(rs.next()){
+                String fio = rs.getString("Name");
+                Log.info(fio);
+            }
+            
+        }catch(SQLException e ){
+            Log.error(e.getMessage());
         }
-        for(int e=0; e < UrList.size(); e++){
-            System.out.println("ID: "+ UrList.get(e).getID() + " Name: " + UrList.get(e).getName() + " PhoneNumber: "+ UrList.get(e).getNumber() + " Adress: " + UrList.get(e).getAdress() + "INN: " + UrList.get(e).getINN());
-        }*/
+
+        Ur u = new Ur("Alexey","88888","Tolostogo street","454466");
+        Gson gson = new Gson();
+        String json = gson.toJson(u);
+        System.out.println(json);
+
+
+        Ur res = gson.fromJson(json,Ur.class);
+        System.out.println(res.getName());
+
         Statistic<Calls> call = new Statistic <Calls> ();
         call.array.add(new Calls("I","WHO",10));
         call.array.add(new Calls("you","me",50));
@@ -27,94 +47,13 @@ public class PhoneBook{
         System.out.println(call.alltime());
 
 
-
-        String[] strSplit;
-        try{
-            FileReader fr = new FileReader("C:\\Users\\alexey\\Desktop\\phonebook\\src\\main\\resources\\FizBook.csv");
-            Scanner scan = new Scanner(fr);
-            scan.nextLine();
-            while(scan.hasNextLine()){
-              Fiz f = new Fiz();
-               f.formCSV(scan.nextLine());
-                FizList.add(f);
-            }
-            fr.close();
-        }catch (IOException error){
-            System.out.println(error.getMessage());
-        }
-       
-        
-
-
-        String[] strSplit2;
-       try{
-            FileReader fr = new FileReader("C:\\Users\\alexey\\Desktop\\phonebook\\src\\main\\resources\\UrBook.csv");
-            Scanner scan = new Scanner(fr);
-            scan.nextLine();
-            while(scan.hasNextLine()){
-                Ur u = new Ur();
-               u.formCSV(scan.nextLine());
-                UrList.add(u);
-            }
-            fr.close();
-        }catch (IOException error){
-            System.out.println(error.getMessage());
-        }
-       
-        
-
-
-        //UrList.add(new Ur("Vasyaaaaa","4954954","MOYA XATA","4458642"));
-
-
-        //String strAllUnityUr = new String();
-        try{
-            FileWriter fw = new FileWriter("C:\\Users\\alexey\\Desktop\\phonebook\\src\\main\\resources\\UrBook.csv",true);
-            
-            int e = UrList.size()-1;
-            //strAllUnityUr=UrList.get(e).getID()+";"+UrList.get(e).getName() +";"+UrList.get(e).getNumber()+";"+UrList.get(e).getAdress()+";"+UrList.get(e).getINN()+"\n";
-            fw.write(UrList.get(e).toCSV());
-            fw.flush();
-            fw.close();
-        }catch (IOException error){
-            System.out.println(error.getMessage());
-        }
-
-       // FizList.add(new Fiz("POTAPENKO","888888","RUBLYOVKA","4758654"));
-
-       // String strAllUnityFiz = new String();
-        try{
-            FileWriter fw = new FileWriter("C:\\Users\\alexey\\Desktop\\phonebook\\src\\main\\resources\\FizBook.csv",true);
-            
-            int e = FizList.size()-1;
-           // strAllUnityFiz=FizList.get(e).getID()+";"+FizList.get(e).getName() +";"+FizList.get(e).getNumber()+";"+FizList.get(e).getAdress()+";"+FizList.get(e).getMobilePhone()+"\n";
-            fw.write(FizList.get(e).toCSV());
-            fw.flush();
-            fw.close();
-        }catch (IOException error){
-            System.out.println(error.getMessage());
-        }
-        
+        Statistic<Conf>  conf = new Statistic<>();
+        String[]  confa = {"I","you","we"};
+        conf.array.add(new Conf(confa,20));
+        System.out.println(conf.getMax().getFirst());
 
 
 
-        for(int e=0; e < FizList.size(); e++){
-            System.out.println("ID: "+ FizList.get(e).getID() + " Name: " + FizList.get(e).getName() + " PhoneNumber: "+ FizList.get(e).getNumber() + " Adress: " + FizList.get(e).getAdress() + "Mobile Phone: " + FizList.get(e).getMobilePhone());
-        }
-
-        for(int e=0; e < UrList.size(); e++){
-            System.out.println("ID: "+ UrList.get(e).getID() + " Name: " + UrList.get(e).getName() + " PhoneNumber: "+ UrList.get(e).getNumber() + " Adress: " + UrList.get(e).getAdress() + " INN: " + UrList.get(e).getINN());
-        }
-
-       /* Calls call1 = new Calls("aaa","bbb",52);
-        Calls call2 = new Calls("bbbb","ccccc",26);
-       // Array a=call1.getTime(),call2.getTime();
-       ArrayList<Integer> arrayTime = new ArrayList<Integer>();
-       arrayTime.add(call1.getTime());
-       arrayTime.add(call2.getTime());
-
-        Statistic <Calls> stCalls = new Statistic<arrayTime> ();
-        System.out.println(stCalls.getMax());*/
 
 
     }
