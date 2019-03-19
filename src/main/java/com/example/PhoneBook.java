@@ -6,13 +6,30 @@ import java.nio.CharBuffer;
 import java.util.Scanner;
 import java.util.*;
 import java.sql.*;
-import org.apache.log4j.Logger;
-import com.google.gson.Gson;
+//import org.apache.log4j.Logger;
+//import com.google.gson.Gson;
+import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+/*
+
+
+
+
+    */
+
+@SpringBootApplication
+@ComponentScan
 public class PhoneBook{
-    final static Logger Log = Logger.getLogger(PhoneBook.class);
+  //  final static Logger Log = Logger.getLogger(PhoneBook.class);
     public static void main(String[] args){
-        ArrayList<Fiz> FizList = new ArrayList<Fiz>();
+        SpringApplication.run(PhoneBook.class, args);
+       /* ArrayList<Fiz> FizList = new ArrayList<Fiz>();
         ArrayList<Ur> UrList = new ArrayList<Ur>();
         String URL = "jdbc:mysql://localhost:3306/test"+"?serverTimezone=UTC";
         try{
@@ -53,7 +70,7 @@ public class PhoneBook{
         System.out.println(conf.getMax().getFirst());
 
 
-
+*/
 
 
     }
