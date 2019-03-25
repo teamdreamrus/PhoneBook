@@ -1,6 +1,9 @@
 package com.example;
 
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicLong;
+
+import com.google.gson.Gson;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,12 +24,20 @@ public class UsersController {
          return new Fiz(Name,);
      }*/
     // public List<fiz> с bd считать
-   @RequestMapping("/get_fiz")
-   public  String S(@RequestParam( defaultValue = "") String Name ){
+   @RequestMapping("/get_fizs")
+   public  String Fizs(@RequestParam( defaultValue = "") String Name ){
         DbHelper db = new DbHelper();
-       return db.getFiz();
+        Gson gson = new Gson();
+       return gson.toJson(db.getFizs());
 
    }
+    @RequestMapping("/get_urs")
+    public  String Urs(@RequestParam( defaultValue = "") String Name ){
+        DbHelper db = new DbHelper();
+        Gson gson = new Gson();
+        return gson.toJson(db.getUrs());
+
+    }
 
 
 
