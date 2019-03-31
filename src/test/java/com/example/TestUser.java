@@ -45,7 +45,7 @@ public class TestUser {
     public void CheckNameByIDUr(){
         DbHelper db = new DbHelper();
         final String result = db.getNameByID("Ur",2);
-        assertEquals(result,"Abramovich");
+        assertEquals(result,"ABRAMOVICH");
     }
 
     @Test
@@ -53,7 +53,7 @@ public class TestUser {
         DbHelper db = new DbHelper();
         final int resultFizs = db.getFizs().size();
         final int resultUrs = db.getUrs().size();
-        assertTrue("Физ лиц больше", resultFizs >= resultUrs);
+        assertTrue("Физ лиц <", resultFizs <= resultUrs);
     }
 
 
