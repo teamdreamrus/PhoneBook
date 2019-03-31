@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TestUser {
-    @Test
+ /*   @Test
     public void CheckAmtFizs(){
         DbHelper db = new DbHelper();
         final int result = db.getFizs().size();
@@ -55,7 +55,7 @@ public class TestUser {
         final int resultUrs = db.getUrs().size();
         assertTrue("Физ лиц <", resultFizs <= resultUrs);
     }
-
+*/
 
 
 
